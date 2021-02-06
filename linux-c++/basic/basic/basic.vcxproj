@@ -75,6 +75,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="File\cj_tree.c" />
     <ClCompile Include="File\file_exp1.c" />
     <ClCompile Include="File\file_exp2.c" />
     <ClCompile Include="File\file_exp3.c" />

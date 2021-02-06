@@ -76,6 +76,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="File\file_exp1.c" />
+    <ClCompile Include="File\file_exp2.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Socket\socket_exp1.c" />
   </ItemGroup>

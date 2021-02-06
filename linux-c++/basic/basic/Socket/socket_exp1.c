@@ -10,9 +10,11 @@
 #include <sys/types.h>
 #include <string.h>
 #include <arpa/inet.h>
+#include <malloc.h>
+#include <unistd.h>
 static void start_simple_echo_server() {
 	const char* const echo_host = "127.0.0.1";
-	int echo_port = 1117;
+	uint16_t echo_port = 1117;
 	struct sockaddr_in* server = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in));
 	server->sin_family = AF_INET;
 	server->sin_port = htons(echo_port);
@@ -26,9 +28,9 @@ static void start_simple_echo_server() {
 	listen(server_fd, SOMAXCONN);
 
 	struct sockaddr_in* client = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in));
-	int client_size = sizeof(*client);
+	socklen_t client_size = sizeof(*client);
 	char* buf = (char*)malloc(1001);
-	int bytes;
+	ssize_t bytes;
 
 	int clientfd = accept(server_fd, (struct sockaddr*)client, &client_size);
 	printf("Connected to %s: %u\n\n", inet_ntoa(client->sin_addr), ntohs(client->sin_port));
@@ -38,9 +40,9 @@ static void start_simple_echo_server() {
 		if (bytes <= 0) {
 			close(clientfd);
 			printf("Connection closed.\n");
-			return 0;
+			return;
 		}
-		printf("Bytes recevied: %u\n", bytes);
+		printf("Bytes recevied: %u\n", (int)bytes);
 		printf("Text: %s\n", buf);
 		write(clientfd, buf, bytes);
 	}

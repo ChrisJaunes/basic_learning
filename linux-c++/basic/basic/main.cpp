@@ -9,7 +9,8 @@ extern "C" {
 }
 int main()
 {
-    cj_tree("/home/chrisjaunes", 3);
+//    File_exp3();
+//    cj_tree("/home/chrisjaunes", 3);
     printf("%s 向你问好!\n", "basic");
     return 0;
 }
